@@ -21,8 +21,8 @@ interface InvitePageProps {
 }
 
 export default async function InvitePage({ params }: InvitePageProps) {
-  const { id } = params
-  const { invite } = await getInvite(id)
+  const inviteId = params.id
+  const { invite } = await getInvite(inviteId)
   const isUserAuthenticated = await isAuthenticated()
   const { user } = await auth()
   const userIsAuthenticatedWithSameEmailFromInvite = isUserAuthenticated
@@ -33,14 +33,14 @@ export default async function InvitePage({ params }: InvitePageProps) {
     'use server'
     const cookieStore = await cookies()
 
-    cookieStore.set('invite', id)
+    cookieStore.set('invite', inviteId)
 
     redirect(`/auth/sign-in?email=${invite.email}`)
   }
 
   async function acceptInviteAction() {
     'use server'
-    await acceptInvite(id)
+    await acceptInvite(inviteId)
 
     redirect(`/`)
   }
