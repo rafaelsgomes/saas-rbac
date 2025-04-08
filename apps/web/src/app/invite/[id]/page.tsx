@@ -1,3 +1,4 @@
+'use client'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { CheckCircle, LayoutDashboard, LogIn, LogOut } from 'lucide-react'
