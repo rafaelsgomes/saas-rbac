@@ -3,7 +3,7 @@ import relativeTime from 'dayjs/plugin/relativeTime'
 import { CheckCircle, LayoutDashboard, LogIn, LogOut } from 'lucide-react'
 import { cookies } from 'next/headers'
 import Link from 'next/link'
-import { redirect } from 'next/navigation'
+import { redirect, useParams } from 'next/navigation'
 
 import { auth, isAuthenticated } from '@/auth/auth'
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar'
@@ -14,14 +14,8 @@ import { getInvite } from '@/http/get-invite'
 
 dayjs.extend(relativeTime)
 
-interface InvitePageProps {
-  params: {
-    id: string
-  }
-}
-
-export default async function InvitePage({ params }: InvitePageProps) {
-  const inviteId = params.id
+export default async function InvitePage() {
+  const { id: inviteId } = useParams<{ id: string }>()
   const { invite } = await getInvite(inviteId)
   const isUserAuthenticated = await isAuthenticated()
   const { user } = await auth()
