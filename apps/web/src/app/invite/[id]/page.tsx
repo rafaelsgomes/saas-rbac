@@ -2,7 +2,6 @@
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import { CheckCircle, LayoutDashboard, LogIn, LogOut } from 'lucide-react'
-import { cookies } from 'next/headers'
 import Link from 'next/link'
 import { redirect, useParams } from 'next/navigation'
 
@@ -26,13 +25,13 @@ export default async function InvitePage() {
 
   async function signInFromInvite() {
     'use server'
+    const { cookies } = await import('next/headers')
     const cookieStore = await cookies()
 
     cookieStore.set('invite', inviteId)
 
     redirect(`/auth/sign-in?email=${invite.email}`)
   }
-
   async function acceptInviteAction() {
     'use server'
     await acceptInvite(inviteId)
