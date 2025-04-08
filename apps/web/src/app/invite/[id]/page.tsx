@@ -55,7 +55,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
             )}
             <AvatarFallback />
           </Avatar>
-          <p className="text-muted-foreground text-balance text-center leading-relaxed">
+          <p className="text-muted-foreground text-center leading-relaxed text-balance">
             <span className="text-foreground font-medium">
               {invite.author?.name ?? 'Someone'}
             </span>{' '}
@@ -92,7 +92,7 @@ export default async function InvitePage({ params }: InvitePageProps) {
 
         {isUserAuthenticated && !userIsAuthenticatedWithSameEmailFromInvite && (
           <div className="space-y-4">
-            <p className="text-muted-foreground text-balance text-center text-sm leading-relaxed">
+            <p className="text-muted-foreground text-center text-sm leading-relaxed text-balance">
               This invite was sent to{' '}
               <span className="text-foreground font-medium">
                 {invite.email}
